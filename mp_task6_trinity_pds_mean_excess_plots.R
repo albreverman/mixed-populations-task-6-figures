@@ -39,8 +39,9 @@ create_date_range_labels <- function(eventCountDfByFloodMechanism) {
 
 # Your file directory and region name here
 inputFile <- "C:/Projects/MixedPopulations/TASK5/TrinityRiver/TrinityRiverPDSMeanExcessSummary_20years.csv"
-outputDir <- "C:/Projects/MixedPopulations/TASK5/TrinityRiver/PDS_Figures/"
+outputDir <- "C:/Projects/MixedPopulations/TASK6/TrinityRiver/PDS_Figures/"
 regionName <- "Trinity River"
+timePeriod <- " 20 years "
 
 # Bar chart of arrival rate by time period --------------------------------
 
@@ -67,5 +68,5 @@ barChartByTimePeriod <- ggplot(meanExcessDf, aes(x = FloodMechanism, y = MeanExc
   ylab("Mean Excess (cfs)")
 barChartByTimePeriod
 
-figureName <- paste0(regionName, " Bar Chart of Flood Mechanism Mean Excess By Time Period")
+figureName <- paste0(regionName, timePeriod, " Bar Chart of Flood Mechanism Mean Excess By Time Period")
 save_plot(outputDir, figureName, barChartByTimePeriod)
