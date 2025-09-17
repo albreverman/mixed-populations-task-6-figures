@@ -61,6 +61,7 @@ pie_chart_flood_type <- function(thisPeriodFloodTypeCounts, title) {
   subtitle <- paste0("PDS Event Count \n", thisPeriodFloodTypeCounts$FloodMechanism[1], ": ", thisPeriodFloodTypeCounts$Count[1], "\n",
                      thisPeriodFloodTypeCounts$FloodMechanism[2], ": ", thisPeriodFloodTypeCounts$Count[2], "\n",
                      thisPeriodFloodTypeCounts$FloodMechanism[3], ": ", thisPeriodFloodTypeCounts$Count[3], "\n",
+                     thisPeriodFloodTypeCounts$FloodMechanism[4], ": ", thisPeriodFloodTypeCounts$Count[4], "\n",
                      "Total: ", thisPeriodFloodTypeCounts$Total_Count[1], "\n")
   
   pie <- ggplot(thisPeriodFloodTypeCounts, aes(x = "", y = pct, fill = FloodMechanism)) +
@@ -87,11 +88,11 @@ pie_chart_flood_type <- function(thisPeriodFloodTypeCounts, title) {
 # Directory and pilot region information here -----------------------------
 
 # Your file directory and region name here
-inputFile <- "C:/Projects/MixedPopulations/TASK5/UpperColoradoRiver/UpperColoradoRiverPDSEventCountSummary_20years.csv"
-outputDir <- "C:/Projects/MixedPopulations/TASK6/UpperColoradoRiver/PDS_Figures/"
-regionName <- "Upper Colorado River"
-timePeriod <- " 20 years "
-minNumberYearsDailyData <- 5 # Suggest ~25% coverage (e.g. for a 20 year time period, use 5 years and for a 10 year time period, use 2-3 years)
+inputFile <- "C:/Projects/MixedPopulations/TASK5/TrinityRiver/TrinityRiverPDSEventCountSummary_10years.csv"
+outputDir <- "C:/Projects/MixedPopulations/TASK6/TrinityRiver/PDS_Figures/"
+regionName <- "Trinity River"
+timePeriod <- " 10 years "
+minNumberYearsDailyData <- 2 # Suggest ~25% coverage (e.g. for a 20 year time period, use 5 years and for a 10 year time period, use 2-3 years)
 
 # Spaghetti Plots of arrival rate -----------------------------------------
 
@@ -202,7 +203,7 @@ line_plot_average_all_mechanisms <- ggplot(meanRate, mapping = aes(x = as.numeri
   ylab("Arrival Rate (events/year)") +
   labs(color = "Flood Mechanism") +
   ggtitle(regionName) +
-  ylim(0, 0.6) + # Might need to change upper limit
+  ylim(0, 2.2) + # Might need to change upper limit
   theme_bw()
 line_plot_average_all_mechanisms
 
@@ -276,7 +277,7 @@ for (i in seq(length(startDates))) {
   startDate <- format(thisPeriodFloodTypeCounts$StartDate, "%d %b %Y") # Format date "01 Oct 1900"
   endDate <- format(thisPeriodFloodTypeCounts$EndDate, "%d %b %Y")
   
-  title <- paste0(startDate, " - ", endDate)
+  title <- paste0(startDate, " -\n ", endDate)
   pieChartList[[i]] <- pie_chart_flood_type(thisPeriodFloodTypeCounts, title)
 }
 
@@ -297,4 +298,3 @@ arrangedPieCharts
 
 figureName <- paste0(regionName, timePeriod, " PDS Pie Chart")
 save_plot(outputDir, figureName, arrangedPieCharts)
-
