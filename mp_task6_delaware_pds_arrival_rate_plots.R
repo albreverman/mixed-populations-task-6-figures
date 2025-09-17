@@ -100,7 +100,7 @@ eventCountDf <- read.csv(inputFile) %>%
     StartDate = as.Date(StartDate), 
     EndDate = as.Date(EndDate) - 1, # Set to 30 September
     FloodMechanism = trimws(FloodMechanism),
-    Rate = ifelse(NumberYears > 0, Count/NumberYears, 0)) 
+    Rate = ifelse(NumberYears > 0, Count/NumberYears, NA)) 
 
 floodMechanisms <- unique(eventCountDf$FloodMechanism)
 
