@@ -38,10 +38,10 @@ create_date_range_labels <- function(eventCountDfByFloodMechanism) {
 # Directory and pilot region information here -----------------------------
 
 # Your file directory and region name here
-inputFile <- "C:/Projects/MixedPopulations/TASK5/IowaRiver/IowaRiverPDSMeanExcessSummary_20years.csv"
+inputFile <- "C:/Projects/MixedPopulations/TASK5/IowaRiver/IowaRiverPDSMeanExcessSummary_10years.csv"
 outputDir <- "C:/Projects/MixedPopulations/TASK6/IowaRiver/PDS_Figures/"
 regionName <- "Iowa River"
-timePeriod <- " 20 years "
+timePeriod <- " 10 years "
 
 # Bar chart of arrival rate by time period --------------------------------
 
@@ -49,6 +49,8 @@ meanExcessDf <- read.csv(inputFile) %>%
   mutate(StartDate = as.Date(StartDate), 
          EndDate = as.Date(EndDate) - 1, # Set to 30 September
          FloodMechanism = trimws(FloodMechanism)) 
+
+meanExcessDf <- meanExcessDf[meanExcessDf$StartDate > as.Date("1940-09-30"), ]
 
 facetLabels <- create_date_range_labels(meanExcessDf)
 meanExcessDf$StartDateLabel <- factor(meanExcessDf$StartDate, labels = facetLabels)
