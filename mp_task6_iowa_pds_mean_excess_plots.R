@@ -38,9 +38,9 @@ create_date_range_labels <- function(eventCountDfByFloodMechanism) {
 # Directory and pilot region information here -----------------------------
 
 # Your file directory and region name here
-inputFile <- "C:/Projects/MixedPopulations/TASK5/DelawareRiver/Data/DelawareRiverPDSMeanExcessSummary_20years.csv"
-outputDir <- "C:/Projects/MixedPopulations/TASK6/DelawareRiver/PDS_Figures/"
-regionName <- "Delaware River"
+inputFile <- "C:/Projects/MixedPopulations/TASK5/IowaRiver/IowaRiverPDSMeanExcessSummary_20years.csv"
+outputDir <- "C:/Projects/MixedPopulations/TASK6/IowaRiver/PDS_Figures/"
+regionName <- "Iowa River"
 timePeriod <- " 20 years "
 
 # Bar chart of arrival rate by time period --------------------------------
